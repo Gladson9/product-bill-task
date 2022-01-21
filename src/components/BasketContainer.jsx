@@ -13,9 +13,13 @@ const BasketContainer = () => {
   };
 
   return (
-    <div className="w-7/12 bg-slate-200 rounded divide-y divide-slate-400 divide-solid">
-      <h2 className="text-3xl p-3">Basket</h2>
+    <div className="w-7/12 bg-slate-200 rounded divide-y divide-slate-400 divide-solid h-min">
+      <h2 className="text-3xl p-3 font-bold">Basket</h2>
       <div className="p-3 divide-y divide-slate-300 divide-solid">
+        {basket.length === 0 && (
+          <h2 className="text-lg font-semibold">Basket is Empty.</h2>
+        )}
+
         {/* Products in Basket  */}
         {basket.map((product) => (
           <ProductInBasket key={product.id} product={product} />

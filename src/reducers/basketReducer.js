@@ -65,7 +65,7 @@ const basketReducer = (state = initialState, action) => {
         if (product.name === "Cheese") {
           // When you buy a cheese, you get a second cheese free
           if (product.count >= 2) {
-            product.savings = product.price;
+            product.savings = (product.price / 2) * product.count;
           } else {
             product.savings = 0;
           }
@@ -79,16 +79,20 @@ const basketReducer = (state = initialState, action) => {
       let idxSoup = updatedState.findIndex(
         (product) => product.name === "Soup"
       );
-      let item = updatedState.find((product) => product.name === "Bread");
+      let breadItem = updatedState.find((product) => product.name === "Bread");
+      let itemSoup = updatedState.find((product) => product.name === "Soup");
 
       if (idx >= 0 && idxSoup >= 0) {
-        updatedState[idx] = {
-          ...item,
-          savings: item.price / 2,
-        };
+        let savingsCost = (breadItem.price / 2) * itemSoup.count;
+        if (savingsCost <= breadItem.totalCost) {
+          updatedState[idx] = {
+            ...breadItem,
+            savings: savingsCost,
+          };
+        }
       } else if (idx >= 0) {
         updatedState[idx] = {
-          ...item,
+          ...breadItem,
           savings: 0,
         };
       }
