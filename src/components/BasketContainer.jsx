@@ -17,8 +17,8 @@ const BasketContainer = () => {
       <h2 className="text-3xl p-3">Basket</h2>
       <div className="p-3 divide-y divide-slate-300 divide-solid">
         {/* Products in Basket  */}
-        {basket.map((product, index) => (
-          <ProductInBasket key={index} product={product} />
+        {basket.map((product) => (
+          <ProductInBasket key={product.id} product={product} />
         ))}
       </div>
       {/* Products total Cost  */}

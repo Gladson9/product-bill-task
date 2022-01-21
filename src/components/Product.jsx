@@ -18,7 +18,7 @@ const Product = ({ product }) => {
       setInBasket(basket.some((item) => item.name === product.name));
     }
     checkInBasket();
-  }, [basket.length]);
+  }, [basket, product.name]);
   return (
     <div className="flex justify-between items-center py-3">
       <div className="flex-auto">
